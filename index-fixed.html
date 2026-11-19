@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101828" />
+  <title>Classroom Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#697586;--line:#e7ebf2;--blue:#315efb;--navy:#101828;--green:#14845b;--amber:#a76508;--shadow:0 8px 28px rgba(16,24,40,.06)}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif}
+    button,input,textarea,select{font:inherit}button{cursor:pointer}
+    .shell{max-width:1120px;margin:auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}
+    .brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:var(--navy);color:white;display:grid;place-items:center;font-weight:800;font-family:Manrope}
+    h1,h2,h3,p{margin-top:0}.brand h1{font:800 19px Manrope;margin:0}.brand p{font-size:12px;color:var(--muted);margin:3px 0 0}
+    .btn{border:0;border-radius:11px;padding:10px 15px;font-weight:700;font-size:13px}.primary{background:var(--blue);color:white}.secondary{background:#eef2ff;color:#294bd0}.plain{background:#f2f4f7;color:#344054}.danger{background:#fff0f0;color:#b42318}
+    .hero{background:linear-gradient(120deg,#101828,#243b69);color:white;border-radius:22px;padding:28px 30px;margin-bottom:22px;box-shadow:var(--shadow)}
+    .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.3px;color:#b7c8f9;font-weight:700}.hero h2{font:800 clamp(24px,4vw,34px) Manrope;margin:10px 0}.hero p{color:#d4ddf2;margin:0;max-width:600px;line-height:1.6;font-size:14px}
+    .hero-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;color:#d4ddf2;font-size:12px}
+    .status{display:inline-flex;align-items:center;gap:7px;background:#ffffff18;padding:7px 10px;border-radius:99px}.dot{width:7px;height:7px;border-radius:50%;background:#5ee0a0}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:22px}.stat,.panel,.item{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+    .stat{padding:17px}.stat small{color:var(--muted);font-size:12px}.stat strong{display:block;font:800 25px Manrope;margin-top:8px}
+    .tabs{display:flex;gap:7px;overflow:auto;padding-bottom:13px;margin-bottom:4px}.tab{white-space:nowrap;border:1px solid var(--line);background:white;color:#536174;border-radius:10px;padding:9px 13px;font-weight:700;font-size:13px}.tab.active{background:var(--navy);border-color:var(--navy);color:white}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 14px}.section-head h3{font:800 18px Manrope;margin:0}.muted{color:var(--muted);font-size:13px}
+    .list{display:grid;gap:10px}.item{padding:16px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.item h4{font-size:14px;margin:0 0 6px}.item p{font-size:13px;color:var(--muted);margin:0;line-height:1.55;white-space:pre-wrap}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.pill{font-size:11px;font-weight:700;border-radius:99px;padding:5px 9px;background:#f0f3f8;color:#536174}.pill.blue{background:#edf1ff;color:#3154d9}.pill.green{background:#eaf8f1;color:#147a51}.pill.amber{background:#fff5e5;color:#925b0a}
+    .actions{display:flex;gap:6px;flex-shrink:0}.iconbtn{border:0;border-radius:8px;background:#f2f4f7;padding:7px 9px;color:#475467;font-size:12px}
+    .empty{border:1px dashed #cbd3df;border-radius:15px;padding:34px;text-align:center;color:var(--muted);font-size:13px;background:#ffffff80}
+    .adminbar{display:none;background:#eef2ff;border:1px solid #dce4ff;padding:12px 14px;border-radius:12px;margin-bottom:16px;align-items:center;justify-content:space-between;gap:10px;font-size:13px;color:#294bd0}.adminbar.show{display:flex}
+    .notice{font-size:12px;color:var(--muted);line-height:1.6;margin-top:22px}
+    .modal{position:fixed;inset:0;background:#10182899;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.show{display:flex}.dialog{width:min(520px,100%);background:white;border-radius:18px;padding:22px;box-shadow:0 25px 70px #10182840;max-height:90vh;overflow:auto}.dialog h3{font:800 19px Manrope;margin-bottom:5px}.field{display:grid;gap:6px;margin:13px 0}.field label{font-size:12px;font-weight:700;color:#475467}.field input,.field textarea,.field select{border:1px solid #d8dee8;border-radius:10px;padding:11px 12px;outline:none;width:100%;background:white}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue)}.dialog-foot{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.hidden{display:none!important}
+    footer{text-align:center;color:#98a2b3;font-size:11px;padding:26px 0 10px}
+    @media(max-width:700px){.shell{padding:16px}.stats{grid-template-columns:repeat(2,1fr)}.hero{padding:23px}.item{display:block}.actions{margin-top:12px}.hero-bottom{align-items:flex-start;flex-direction:column}header{margin-bottom:18px}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="brand"><div class="logo">CH</div><div><h1>Classroom Hub</h1><p>Pusat informasi kelas</p></div></div>
+    <button class="btn secondary" id="loginBtn">Login Admin</button>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">CLASSROOM INFORMATION CENTER</div>
+    <h2>Semua info kelas, satu tempat.</h2>
+    <p>Temukan tugas, materi, pengumuman, dan jadwal pelajaran terbaru tanpa harus menggulir chat grup terlalu jauh.</p>
+    <div class="hero-bottom"><span id="todayLabel">Informasi kelas</span><span class="status"><span class="dot"></span> Pusat informasi kelas</span></div>
+  </section>
+
+  <div class="adminbar" id="adminBar"><span>Mode admin aktif — perubahan akan tersimpan online.</span><button class="btn secondary" id="logoutBtn">Keluar</button></div>
+
+  <section class="stats">
+    <div class="stat"><small>Tugas aktif</small><strong id="taskCount">—</strong></div>
+    <div class="stat"><small>Materi</small><strong id="materialCount">—</strong></div>
+    <div class="stat"><small>Pengumuman</small><strong id="announcementCount">—</strong></div>
+    <div class="stat"><small>Arsip tugas</small><strong id="archiveCount">—</strong></div>
+  </section>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-tab="tasks">Daftar Tugas</button>
+    <button class="tab" data-tab="materials">Materi</button>
+    <button class="tab" data-tab="announcements">Pengumuman</button>
+    <button class="tab" data-tab="schedule">Jadwal</button>
+    <button class="tab" data-tab="archive">Arsip Tugas</button>
+  </nav>
+
+  <main>
+    <div class="section-head"><div><h3 id="sectionTitle">Daftar Tugas</h3><div class="muted" id="sectionDesc">Tugas yang perlu diperhatikan.</div></div><button class="btn primary hidden" id="addBtn">+ Tambah</button></div>
+    <div class="list" id="content"><div class="empty">Menghubungkan ke database…</div></div>
+  </main>
+  <p class="notice">Informasi di website ini dikelola oleh admin kelas. Pastikan selalu memeriksa deadline dan instruksi dari guru.</p>
+  <footer>Classroom Hub · Dibuat untuk memudahkan informasi kelas</footer>
+</div>
+
+<div class="modal" id="modal">
+  <div class="dialog">
+    <h3 id="modalTitle">Login Admin</h3><p class="muted" id="modalDesc">Masuk menggunakan akun admin kelas.</p>
+    <form id="entryForm">
+      <div id="loginFields">
+        <div class="field"><label>Email admin</label><input type="email" id="email" autocomplete="username" placeholder="email-admin" required></div>
+        <div class="field"><label>Password</label><input type="password" id="password" autocomplete="current-password" placeholder="Password" required></div>
+      </div>
+      <div id="dataFields" class="hidden">
+        <div class="field"><label>Judul</label><input id="title" maxlength="120" required placeholder="Contoh: PR Matematika"></div>
+        <div class="field"><label>Deskripsi / detail</label><textarea id="description" placeholder="Tulis detail informasi…"></textarea></div>
+        <div class="field" id="subjectWrap"><label>Mata pelajaran / kategori</label><input id="subject" placeholder="Contoh: Matematika"></div>
+        <div class="field" id="dateWrap"><label>Deadline / tanggal</label><input type="date" id="dueDate"></div>
+        <div class="field" id="linkWrap"><label>Link materi (opsional)</label><input type="url" id="link" placeholder="https://…"></div>
+      </div>
+      <div class="dialog-foot"><button type="button" class="btn plain" id="cancelBtn">Batal</button><button type="submit" class="btn primary" id="submitBtn">Masuk</button></div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Isi dua nilai ini setelah membuat project Supabase. Jangan pernah memasukkan service_role key di sini.
+  const SUPABASE_URL = "https://oonxpmvrzcwjpvdaypgf.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_wEvZp4uw0pMUfFOAXrme4g_WL5zP22C";
+  const configured =
+    !SUPABASE_URL.startsWith("PASTE_") &&
+    !SUPABASE_ANON_KEY.startsWith("PASTE_") &&
+    typeof window.supabase?.createClient === "function";
+
+  const db = configured
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    : null;
+
+  const labels = {
+    tasks:["Daftar Tugas","Tugas yang perlu diperhatikan."],
+    materials:["Materi Pelajaran","File dan tautan materi kelas."],
+    announcements:["Pengumuman","Informasi penting untuk seluruh kelas."],
+    schedule:["Jadwal Pelajaran","Jadwal dan agenda kelas."],
+    archive:["Arsip Tugas","Tugas yang sudah dipindahkan ke arsip."]
+  };
+  let currentTab="tasks", isAdmin=false, editingId=null, records=[];
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  $("todayLabel").textContent = new Intl.DateTimeFormat("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(new Date());
+
+  function openModal(mode){$("modal").classList.add("show");$("entryForm").dataset.mode=mode;}
+  function closeModal(){$("modal").classList.remove("show");$("entryForm").reset();}
+  $("cancelBtn").onclick=closeModal;
+  $("loginBtn").onclick=()=>{if(!configured){alert("Website belum dihubungkan ke Supabase. Ikuti langkah di README.");return;} $("modalTitle").textContent="Login Admin";$("modalDesc").textContent="Masuk menggunakan akun admin kelas.";$("loginFields").classList.remove("hidden");$("dataFields").classList.add("hidden");$("submitBtn").textContent="Masuk";openModal("login");};
+  $("logoutBtn").onclick=async()=>{await db.auth.signOut();};
+  $("addBtn").onclick=()=>showEditor();
+  $("tabs").onclick=e=>{const b=e.target.closest("[data-tab]");if(!b)return;currentTab=b.dataset.tab;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));render();};
+  $("entryForm").onsubmit=async e=>{
+    e.preventDefault();
+    const submitBtn=$("submitBtn");
+    const originalText=submitBtn.textContent;
+    submitBtn.disabled=true;
+    submitBtn.textContent="Memproses…";
+
+    try {
+      if($("entryForm").dataset.mode==="login"){
+        if(!db) throw new Error("Supabase belum siap. Periksa koneksi internet dan apakah library Supabase berhasil dimuat.");
+
+        const email=$("email").value.trim();
+        const password=$("password").value;
+        const {data,error}=await db.auth.signInWithPassword({email,password});
+
+        if(error) throw error;
+        if(!data.session) throw new Error("Login belum menghasilkan sesi. Periksa akun dan konfigurasi Supabase Auth.");
+
+        closeModal();
+        setAdmin(true);
+        await loadData();
+        return;
+      }
+
+      const payload={
+        type:currentTab==="archive"?"tasks":currentTab,
+        title:$("title").value.trim(),
+        description:$("description").value.trim(),
+        subject:$("subject").value.trim()||null,
+        due_date:$("dueDate").value||null,
+        link:$("link").value.trim()||null,
+        is_archived:currentTab==="archive"
+      };
+      const result=editingId
+        ? await db.from("class_items").update(payload).eq("id",editingId)
+        : await db.from("class_items").insert(payload);
+
+      if(result.error) throw result.error;
+      closeModal();
+      await loadData();
+    } catch(error) {
+      console.error("Classroom Hub error:",error);
+      alert("Terjadi kesalahan: "+(error?.message||"Kesalahan tidak diketahui"));
+    } finally {
+      submitBtn.disabled=false;
+      submitBtn.textContent=originalText;
+    }
+  };
+  async function checkSession(){
+    if(!configured){$("content").innerHTML='<div class="empty"><b>Website belum dikonfigurasi.</b><br>Hubungkan Supabase mengikuti README agar data bisa tersimpan dan dibagikan.</div>';return;}
+    const {data:{session}}=await db.auth.getSession();setAdmin(!!session);
+    db.auth.onAuthStateChange((_event,s)=>setAdmin(!!s));
+    await loadData();
+  }
+  function setAdmin(v){isAdmin=v;$("adminBar").classList.toggle("show",v);$("loginBtn").classList.toggle("hidden",v);$("addBtn").classList.toggle("hidden",!v);render();}
+  async function loadData(){
+    if(!configured)return;
+    const {data,error}=await db.from("class_items").select("*").order("created_at",{ascending:false});
+    if(error){$("content").innerHTML='<div class="empty">Tidak bisa memuat data. Periksa pengaturan database dan kebijakan akses.</div>';return;}
+    records=data||[];render();
+  }
+  function showEditor(id=null){
+    editingId=id;const r=records.find(x=>x.id===id);
+    $("modalTitle").textContent=id?"Edit informasi":"Tambah informasi";
+    $("modalDesc").textContent="Isi informasi lalu simpan agar langsung terlihat oleh teman sekelas.";
+    $("loginFields").classList.add("hidden");$("dataFields").classList.remove("hidden");$("submitBtn").textContent="Simpan";
+    $("title").value=r?.title||"";$("description").value=r?.description||"";$("subject").value=r?.subject||"";$("dueDate").value=r?.due_date||"";$("link").value=r?.link||"";
+    $("subjectWrap").classList.toggle("hidden",currentTab==="announcements");
+    $("dateWrap").classList.toggle("hidden",currentTab==="announcements");
+    $("linkWrap").classList.toggle("hidden",currentTab==="announcements");
+    openModal("save");
+  }
+  function render(){
+    if(!configured)return;
+    const active=records.filter(r=>!r.is_archived && r.type===currentTab);
+    const archived=records.filter(r=>r.type==="tasks" && r.is_archived);
+    const shown=currentTab==="archive"?archived:active;
+    $("sectionTitle").textContent=labels[currentTab][0];$("sectionDesc").textContent=labels[currentTab][1];
+    $("taskCount").textContent=records.filter(r=>r.type==="tasks"&&!r.is_archived).length;
+    $("materialCount").textContent=records.filter(r=>r.type==="materials").length;
+    $("announcementCount").textContent=records.filter(r=>r.type==="announcements").length;
+    $("archiveCount").textContent=archived.length;
+    if(!shown.length){$("content").innerHTML='<div class="empty">Belum ada informasi di bagian ini.</div>';return;}
+    $("content").innerHTML=shown.map(r=>{
+      const date=r.due_date?new Date(r.due_date+"T00:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"}):"";
+      const tag=r.type==="tasks"?(r.is_archived?"Diarsipkan":"Tugas"):r.type==="materials"?"Materi":r.type==="announcements"?"Pengumuman":"Jadwal";
+      return `<article class="item"><div><h4>${esc(r.title)}</h4><p>${esc(r.description||"")}</p><div class="meta"><span class="pill blue">${esc(tag)}</span>${r.subject?`<span class="pill">${esc(r.subject)}</span>`:""}${date?`<span class="pill amber">${r.is_archived?"Tanggal":"Deadline"}: ${date}</span>`:""}${r.link?`<a class="pill green" href="${esc(r.link)}" target="_blank" rel="noopener">Buka tautan ↗</a>`:""}</div></div>${isAdmin?`<div class="actions"><button class="iconbtn" data-edit="${r.id}">Edit</button>${r.type==="tasks"&&!r.is_archived?`<button class="iconbtn" data-archive="${r.id}">Arsipkan</button>`:""}<button class="iconbtn" data-delete="${r.id}">Hapus</button></div>`:""}</article>`;
+    }).join("");
+  }
+  $("content").onclick=async e=>{
+    const edit=e.target.closest("[data-edit]");const archive=e.target.closest("[data-archive]");const del=e.target.closest("[data-delete]");
+    if(edit)showEditor(edit.dataset.edit);
+    if(archive){const {error}=await db.from("class_items").update({is_archived:true}).eq("id",archive.dataset.archive);if(error)alert(error.message);else loadData();}
+    if(del&&confirm("Hapus informasi ini? Tindakan ini tidak bisa dibatalkan.")){const {error}=await db.from("class_items").delete().eq("id",del.dataset.delete);if(error)alert(error.message);else loadData();}
+  };
+  checkSession();
+</script>
+</body>
+</html>
